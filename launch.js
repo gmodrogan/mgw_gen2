@@ -48,7 +48,7 @@ function authorize(data) {
         `scope=${encodeURIComponent("user/Patient.r launch")}&` +
         "state=98wrghuwuogerg97&" +
         `aud=${fhirUrl}&` +
-        "code_challenge_method=S256&"
+        "code_challenge_method=S256&" +
         `code_challenge=${codeChallenge}`
     location.assign(auth_location)
 }
