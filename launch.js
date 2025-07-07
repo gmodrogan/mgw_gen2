@@ -26,11 +26,10 @@ async function getWellKnown() {
 }
 
 function authorize(data) {
-    //.replace
+
     let authEndpoint = data.authorization_endpoint;
-    let token_endpoint = mgw_eat_active == "1" ? data.token_endpoint : data.token_endpoint.replace("api.cernermillennium.com", "non-eat");
-    // let token_endpoint = data.token_endpoint;
-    // let token_endpoint = 
+    let token_endpoint = mgw_eat_active == "1" ? data.token_endpoint : data.token_endpoint.replace("allowed.host", "non-eat");
+
     Cookie.set('token_endpoint', token_endpoint, {secure: true, "max-age": 3600})
 
     debugger;
