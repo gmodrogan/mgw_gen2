@@ -28,37 +28,26 @@ export function getWwwFormUrlEncodedData(data) {
     return formBody.join("&");
 }
 
-export async function generateSHA256Hash(inputString) {
-    // Encode the input string to a Uint8Array
+export async function generateCodeChallenge(codeVerifier) {
     const encoder = new TextEncoder();
-    const data = encoder.encode(inputString);
+    const data = encoder.encode(codeVerifier);
+    const digest = await crypto.subtle.digest('SHA-256', data);
 
-    // Hash the data using SHA-256
-    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+    const base64Digest = btoa(String.fromCharCode(...new Uint8Array(digest)))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
 
-    // Convert the ArrayBuffer to a Uint8Array
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-
-    // Convert each byte to its hexadecimal representation and join
-    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-
-    return hashHex;
+    return base64Digest;
 }
 
-export function generateUrlSafeRandomString(length) {
-    // 1. Generate cryptographically secure random bytes
-    const randomBytes = new Uint8Array(length);
-    crypto.getRandomValues(randomBytes);
 
-    // 2. Convert bytes to a base64 string (not yet URL-safe)
-    const base64String = btoa(String.fromCharCode(...randomBytes));
+export function generateCodeVerifier() {
+    const array = new Uint8Array(64); // 64 bytes gives us 86-character Base64 string
+    crypto.getRandomValues(array);
 
-    // 3. Make it URL-safe by replacing problematic characters
-    //    and removing padding
-    const urlSafeString = base64String
-        .replace(/\+/g, '-') // Replace + with -
-        .replace(/\//g, '_') // Replace / with _
-        .replace(/=+$/, ''); // Remove trailing = padding
-
-    return urlSafeString;
+    return btoa(String.fromCharCode(...array))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, ''); // Remove padding
 }

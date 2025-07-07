@@ -1,4 +1,4 @@
-import {Cookie, generateSHA256Hash, generateUrlSafeRandomString} from "./helpers.js";
+import {Cookie, generateSHA256Hash, generateCodeVerifier, generateCodeChallenge} from "./helpers.js";
 import {clientId, redirectUri} from './config.js'
 
 const queryString = window.location.search
@@ -7,7 +7,7 @@ const urlParams = new URLSearchParams(queryString);
 const fhirUrl = urlParams.get('iss')
 Cookie.set('fhir_url', fhirUrl, {secure: true, "max-age": 3600})
 
-let code_verifier = generateUrlSafeRandomString(32)
+let code_verifier = generateCodeVerifier()
 let codeChallenge = ''
 Cookie.set('code_verifier', code_verifier, {secure: true, "max-age": 3600})
 
@@ -52,7 +52,7 @@ function authorize(data) {
         `code_challenge=${codeChallenge}`
     location.assign(auth_location)
 }
-generateSHA256Hash(code_verifier).then(hash => {
+generateCodeChallenge(code_verifier).then(hash => {
     codeChallenge = hash;
     getWellKnown().then((data) => {
         authorize(data)
