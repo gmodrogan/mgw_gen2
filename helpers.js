@@ -27,3 +27,38 @@ export function getWwwFormUrlEncodedData(data) {
     }
     return formBody.join("&");
 }
+
+export async function generateSHA256Hash(inputString) {
+    // Encode the input string to a Uint8Array
+    const encoder = new TextEncoder();
+    const data = encoder.encode(inputString);
+
+    // Hash the data using SHA-256
+    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+
+    // Convert the ArrayBuffer to a Uint8Array
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    // Convert each byte to its hexadecimal representation and join
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+}
+
+export function generateUrlSafeRandomString(length) {
+    // 1. Generate cryptographically secure random bytes
+    const randomBytes = new Uint8Array(length);
+    crypto.getRandomValues(randomBytes);
+
+    // 2. Convert bytes to a base64 string (not yet URL-safe)
+    const base64String = btoa(String.fromCharCode(...randomBytes));
+
+    // 3. Make it URL-safe by replacing problematic characters
+    //    and removing padding
+    const urlSafeString = base64String
+        .replace(/\+/g, '-') // Replace + with -
+        .replace(/\//g, '_') // Replace / with _
+        .replace(/=+$/, ''); // Remove trailing = padding
+
+    return urlSafeString;
+}

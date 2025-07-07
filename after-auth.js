@@ -10,12 +10,15 @@ const state = urlParams.get('state')
 
 const tokenEndpoint = Cookie.get("token_endpoint")
 const fhirUrl = Cookie.get("fhir_url")
+const codeVerifier = Cookie.get("code_verifier")
+
 
 var accessTokenPostBody = {
     'grant_type': 'authorization_code',
     'code': code,
     'client_id': clientId,
-    'redirect_uri': redirectUri
+    'redirect_uri': redirectUri,
+    'code_verifier': codeVerifier
 };
 
 async function getAccessToken() {
