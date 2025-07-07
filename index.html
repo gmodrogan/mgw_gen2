@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h1>MGW SmartOnFhir</h1>
+<div>
+    SMART launch URL: 
+    <span>
+        <a href='https://smart.cerner.com/smart/ec2458f2-1e24-41c8-b71b-0e701af7583d/apps/28666bf7-83cd-45e8-b115-d370b785a711/?PAT_PersonId=12742397&VIS_EncntrId=97953504&USR_PersonId=12742069&username=portal&need_patient_banner=true'>
+            prod-C1941
+        </a>
+    </span>
+    |
+    <span>
+        <a href='https://smart.devapplications.integrationcerner.com/smart/91fd1841-fb25-42f3-a48e-1264a2c6b72a/apps/28666bf7-83cd-45e8-b115-d370b785a711?PAT_PersonId=13396098&VIS_EncntrId=0&PAT_PPRCode=1109&USR_PersonId=14087182&username=GM041584'>
+            dev-int
+        </a>
+    </span>
+</div>
+<p>App Launch URL: <span><a id='mgw-launch-url'></a></span></p>
+<div id='mgw-data'>
+    <p>Token type: <span id="mgw-data-token-type">normal</span> <button id="mgw-toggle-token-type">Toggle token type (normal/EAT)</button></p>
+    <textarea id="mgw-data-token" rows="5" cols="150"></textarea>
+    <p id="mgw-data-url">Retrieving data...</p>
+    <textarea id="mgw-data-content" rows="10" cols="100"></textarea>
+</div>
+<div>
+    <p>Launch timestamp in: <span id="launch_timestamp_in"></span></p>
+    <p>Launch timestamp out: <span id="launch_timestamp_out"></span></p>
+    <p>After redirect timestamp in: <span id="after_auth_timestamp_in"></span></p>
+    <p>After redirect timestamp out: <span id="after_auth_timestamp_out"></span></p>
+    <p>Index timestamp in: <span id="index_timestamp_in"></span></p>
+    <p>Duration(s) <span id="duration"></span></p>
+</div>
+
+<script type="module" src="index.js"></script>
+</body>
+</html>
