@@ -1,4 +1,4 @@
-import {Cookie, generateSHA256Hash, generateCodeVerifier, generateCodeChallenge} from "./helpers.js";
+import {Cookie, generateCodeVerifier, generateCodeChallenge} from "./helpers.js";
 import {clientId, redirectUri} from './config.js'
 
 const queryString = window.location.search
