@@ -5,7 +5,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString);
 
 let fhirUrl = urlParams.get('iss')
-fhirUrl = "https://fhir-ohehr-oic-test9-axa2loece4zd-ngdev.integration.us-ashburn-1.ocp.oc-test.com/fhir/r4/ehr/"
+fhirUrl = "https://fhir-ohehr-oic-test9-axa2loece4zd-ngdev.integration.us-ashburn-1.ocp.oc-test.com/fhir/r4/ehr"
 Cookie.set('fhir_url', fhirUrl, {secure: true, "max-age": 3600})
 
 let code_verifier = generateCodeVerifier()
