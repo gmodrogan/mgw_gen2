@@ -44,7 +44,6 @@ async function getPatient() {
     let response = await fetch(fhirUrl + '/Patient/' + token_data.patient, {
         headers: {
             'Accept': 'application/json',
-            'mgw-custom-header-one': 'my-custom-header-value-when-reading-a-patient',
             'Authorization': `Bearer ${token_data.access_token}`
         }
     })

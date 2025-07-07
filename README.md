@@ -1,4 +1,4 @@
 # mgw_soh
 
 Link to launch
-https://smart.cerner.com/smart/ec2458f2-1e24-41c8-b71b-0e701af7583d/apps/28666bf7-83cd-45e8-b115-d370b785a711/?PAT_PersonId=12742397&VIS_EncntrId=97953504&USR_PersonId=12742069&username=portal&need_patient_banner=true
+https://smart.stagingapplications.integrationcerner.com/smart/13743aea-3e90-41ef-b8a5-6ab2e3939039/apps/2228d875-ef65-4d9c-bda8-71d3dd97384b/?PAT_PersonId=pa-e7187f70-4674-3942-ab59-ef2ba7ee59a2&VIS_EncntrId=97953504&USR_PersonId=12742069&username=pcp20&need_patient_banner=true
