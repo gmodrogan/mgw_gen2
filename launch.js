@@ -46,7 +46,7 @@ function authorize(data) {
         `client_id=${clientId}&` +
         `redirect_uri=${encodeURI(redirectUri)}&` +
         `launch=${launchId}&` +
-        `scope=${encodeURIComponent("user/Patient.rs launch")}&` +
+        `scope=${encodeURIComponent("user/Patient.rs user/Practitioner.rs launch")}&` +
         "state=98wrghuwuogerg97&" +
         `aud=${fhirUrl}&` +
         "code_challenge_method=S256&" +
